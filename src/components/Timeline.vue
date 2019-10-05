@@ -10,17 +10,16 @@
           :key="index"
           class="col-12 mx-auto"
         >
-          <!-- class="col-12 mx-auto" :style="[(index % 2 == 0) ? float:left : float:right ]" -->
-          <v-card class="containerWithin" :class="[index == active ? 'active' : '', active != null && index != active ? 'inactive' : '', 'card']">
-            <v-card-title primary-title>
+          <div :class="[iseven(index)?'a':'b']">
+          <v-card class="containerWithin" :class="[index == active ? 'active' : '', active != null && index != active ? 'inactive' : '', 'card']" >
+            <v-card-title primary-title >
               <div>
                 <h3 class="headline mb-2 text-center">
-                  <strong>  {{ item.event_name }} </strong>
+                  <strong> {{ item.event_name }} </strong>
                 </h3>
                 <div class="links">
                   <span><i class="fas fa-clock" />{{ format_date(item.event_time) }}</span>
                 </div>
-                <div class="card-text" v-html="item.detail" />
               </div>
             </v-card-title>
 
@@ -28,10 +27,10 @@
               <v-btn v-if="active != index" flat color="orange" @click="active = index">Read More</v-btn>
               <v-btn v-else flat color="orange" @click="active = null">Close</v-btn>
             </v-card-actions>
-
           </v-card>
         </div>
       </div>
+    </div>
 
     </div>
   </div>
@@ -70,6 +69,12 @@ export default {
         first: text.substr(0, 3),
         second: text.substr(3, length)
       }
+    },
+    iseven(data){
+    if(data % 2 == 0)
+    return true
+    else
+    return false
     },
     format_date (value) {
       /* eslint-disable */
@@ -123,8 +128,8 @@ export default {
     }/*,
     sorting (value, Str) {                    //SORTING THE DATE  Used "underscore.js" Not complete though.. Not SURE HOW TOO
       var val = moment(String(value)).format('YYYY-MM-DD')
-      _.sortBy(val)
-    }*/
+      }
+      _.sortBy(val)*/
   }
 }
 </script>
@@ -153,8 +158,8 @@ span.highlighted {
 .card {
   margin-bottom: 20px;
   background: rgba(255, 244, 227, 0.76);
-  width: 100%;                        // sdslabs has 45% instead of 100%...
-
+  width: 40vw;
+  height:20vw;                        // sdslabs has 45% instead of 100%...
     & > span {
       position: absolute;
       background: rgba(255, 255, 255, 0.75);
@@ -193,7 +198,7 @@ span.highlighted {
     font-size: 18px;
     margin-right: 3px;
   }
-  
+
   i.fa-clock {
     color: #C62828;
   }
@@ -265,5 +270,11 @@ span.highlighted {
 }
 .row > div.active {
   margin: 0 auto;
+}
+.a {
+  float:left;
+}
+.b {
+ float:right;
 }
 </style>
