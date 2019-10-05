@@ -11,26 +11,26 @@
           class="col-12 mx-auto"
         >
           <div :class="[iseven(index)?'a':'b']">
-          <v-card class="containerWithin" :class="[index == active ? 'active' : '', active != null && index != active ? 'inactive' : '', 'card']" >
-            <v-card-title primary-title >
-              <div>
-                <h3 class="headline mb-2 text-center">
-                  <strong> {{ item.event_name }} </strong>
-                </h3>
-                <div class="links">
-                  <span><i class="fas fa-clock" />{{ format_date(item.event_time) }}</span>
+            <v-card class="containerWithin" :class="[index == active ? 'active' : '', active != null && index != active ? 'inactive' : '', 'card']">
+              <v-card-title primary-title>
+                <div>
+                  <h3 class="headline mb-2 text-center">
+                    <strong> {{ item.event_name }} </strong>
+                  </h3>
+                  <div class="links">
+                    <span><i class="fas fa-clock" />{{ format_date(item.event_time) }}</span>
+                  </div>
                 </div>
-              </div>
-            </v-card-title>
+              </v-card-title>
 
-            <v-card-actions class="justify-content-between">
-              <v-btn v-if="active != index" flat color="orange" @click="active = index">Read More</v-btn>
-              <v-btn v-else flat color="orange" @click="active = null">Close</v-btn>
-            </v-card-actions>
-          </v-card>
+              <v-card-actions class="justify-content-between">
+                <v-btn v-if="active != index" flat color="orange" @click="active = index">Read More</v-btn>
+                <v-btn v-else flat color="orange" @click="active = null">Close</v-btn>
+              </v-card-actions>
+            </v-card>
+          </div>
         </div>
       </div>
-    </div>
 
     </div>
   </div>
@@ -125,11 +125,8 @@ export default {
         Str = mon + ',' + YearVal
         return Str
       }
-    }/*,
-    sorting (value, Str) {                    //SORTING THE DATE  Used "underscore.js" Not complete though.. Not SURE HOW TOO
-      var val = moment(String(value)).format('YYYY-MM-DD')
-      }
-      _.sortBy(val)*/
+    }
+    }           
   }
 }
 </script>
